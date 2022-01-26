@@ -1,0 +1,12 @@
+{
+  "name": "@wcd/divriots.orbiting-elements",
+  "version": "0.0.0",
+  "description": "",
+  "license": "ISC",
+  "type": "module",
+  "homepage": "{{ homepage }}",
+  "scripts": {
+    "serve": "npx wcd-cli@latest serve K4nq9IUNbvXxLX7C1Z0r --open"
+  },
+  "dependencies": {}
+}
