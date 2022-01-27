@@ -7,16 +7,17 @@ const map = (number: number, inMin: number, inMax: number, outMin: number, outMa
 
 @customElement('orbiting-element')
 export class OrbitElement extends LitElement {
-  @property({ type: Number, reflect: true }) public floatDur;
-  @property({ type: Number, reflect: true }) public radian;
+  @property({ type: Number, reflect: true, attribute: "float-speed" }) public floatDur;
+  @property({ type: Number, reflect: true }) public angle;
   @property({ type: Number, reflect: true }) public radius;
-  @property({ type: Number, reflect: true }) public rotationSpeed;
+  @property({ type: Number, reflect: true, attribute: "speed" }) public rotationSpeed;
   @property({ type: Number, reflect: true }) public direction;
+
+  public radian: number;
 
   static styles = css`
     :host {
       --float-duration: 4s;
-      position: absolute;
       width: 75px;
       height: 75px;
       opacity: 0;
@@ -53,40 +54,16 @@ export class OrbitElement extends LitElement {
       }
     }
   `;
-  
-  constructor() {
-    super();
-    this.floatDur = map(Math.random() * 6, 0, 6, 2, 4);
-    this.radian = (Math.random() * 360) * (Math.PI / 180);
-    // Clamp by viewport width
-    this.radius = Math.min(map(Math.random(), 0, 1, 150, 200), window.innerWidth / 2 - 75);
-    this.rotationSpeed = map(Math.random(), 0, 1, 0.04, 0.12);
-    this.direction = Math.random() > 0.5 ? 1 : -1;
+
+  connectedCallback() {
+    super.connectedCallback();
     this.style.setProperty('--float-duration', `${this.floatDur}s`);
     setTimeout(() => {
       this.classList.add('visible');
-    }, Math.random() * 500)
-  }
-  
-  connectedCallback() {
-    super.connectedCallback();
-    this.setPosition();
-    setInterval(() => {
-      if (!this.matches(':hover')) { 
-        this.radian += this.rotationSpeed * (Math.PI / 180) * this.direction;
-        this.setPosition();
-      }
-    });
-  }
-  
-  setPosition() {
-    const y = this.radius * Math.sin(this.radian);
-    const x = this.radius * Math.cos(this.radian);
-    this.style.top = `${y}px`;
-    this.style.left = `${x}px`;
+    }, Math.random() * 500);
   }
 
   render() {
-    return html`<div class="logo-wrap"><slot></slot></div>`
+    return html`<slot></slot>`;
   }
 }
