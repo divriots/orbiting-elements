@@ -1,8 +1,5 @@
-# Lit Starter Kit
+# Orbiting Elements
 
-### Links
+A Web Component that orbits a certain number of elements around a core element.
 
-- [Official website](https://lit.dev/)
-- [Chat](https://join.slack.com/t/polymer/shared_invite/enQtNTAzNzg3NjU4ODM4LTkzZGVlOGIxMmNiMjMzZDM1YzYyMzdiYTk0YjQyOWZhZTMwN2RlNjM5ZDFmZjMxZWRjMWViMDA1MjNiYWFhZWM)
-- [GitHub](https://github.com/lit/lit)
-- [Issues](https://github.com/lit/lit/issues)
+Fully flexible to add your own core element or orbiting elements, see demos for advanced use cases.
