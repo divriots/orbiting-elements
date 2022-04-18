@@ -7,7 +7,8 @@ const map = (number: number, inMin: number, inMax: number, outMin: number, outMa
 
 @customElement('orbiting-element')
 export class OrbitElement extends LitElement {
-  @property({ type: Number, reflect: true, attribute: "float-speed" }) public floatDur;
+  @property({ type: Number, reflect: true, attribute: "float-speed" }) public floatDur = 5;
+  @property({ type: String, reflect: true, attribute: "float-amount" }) public floatAmount = '20px';
   @property({ type: Number, reflect: true }) public angle;
   @property({ type: Number, reflect: true }) public radius;
   @property({ type: Number, reflect: true, attribute: "speed" }) public rotationSpeed;
@@ -15,14 +16,16 @@ export class OrbitElement extends LitElement {
 
   public radian: number;
 
+  // TODO: use CSS Custom Props to make all these configurable from outside
+  // width, height, durations, shadows etc.
   static styles = css`
     :host {
-      --float-duration: 4s;
       width: 75px;
       height: 75px;
       opacity: 0;
       transition: opacity 0.7s ease-in-out;
       animation: float var(--float-duration) ease-in-out infinite;
+      --orbiting-element-shadow-color: rgba(0,0,0,0.7); 
     }
 
     :host(.visible) {
@@ -41,15 +44,15 @@ export class OrbitElement extends LitElement {
 
     @keyframes float {
       0% {
-        filter: drop-shadow( 0px 5px 2px rgba(0, 0, 0, .7));
+        filter: drop-shadow(0px 5px 2px var(--orbiting-element-shadow-color));
         transform: translatey(0px);
       }
       50% {
-        filter: drop-shadow( 0px 25px 5px rgba(0, 0, 0, .7));
-        transform: translatey(-20px);
+        filter: drop-shadow(0px calc(5px + var(--float-amount)) calc(2px + var(--float-amount) / 6) var(--orbiting-element-shadow-color));
+        transform: translatey(calc(-1 * var(--float-amount)));
       }
       100% {
-        filter: drop-shadow( 0px 5px 2px rgba(0, 0, 0, .7));
+        filter: drop-shadow(0px 5px 2px var(--orbiting-element-shadow-color));
         transform: translatey(0px);
       }
     }
@@ -58,6 +61,7 @@ export class OrbitElement extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.style.setProperty('--float-duration', `${this.floatDur}s`);
+    this.style.setProperty('--float-amount', `${this.floatAmount}`);
     setTimeout(() => {
       this.classList.add('visible');
     }, Math.random() * 500);
