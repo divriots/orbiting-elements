@@ -184,6 +184,21 @@ export const floatSpeed = () => `
   </div>
 `;
 
+export const floatAmount = () => `
+  ${style}
+  <div class="wrap">
+    <h1>Change the float height/amount of the orbiting elements</h1>
+    <orbiter-element>
+      ${main}
+      <orbiting-element float-amount="20px" slot="orbiting">${svg1}</orbiting-element>
+      <orbiting-element float-amount="5px" slot="orbiting">${svg2}</orbiting-element>
+      <orbiting-element float-amount="50px" slot="orbiting">${svg3}</orbiting-element>
+      <orbiting-element float-amount="0.75rem" slot="orbiting">${svg4}</orbiting-element>
+    </orbiter-element>
+  </div>
+`;
+
+
 export const customElements = () => `
   ${style}
   <div class="wrap">
