@@ -1,5 +1,5 @@
 import {html, css, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {property} from 'lit/decorators.js';
 
 const map = (number: number, inMin: number, inMax: number, outMin: number, outMax: number): number => {
   return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
@@ -15,7 +15,6 @@ export declare interface CustomOrbitingElement extends HTMLElement {
   orbiting: boolean;
 }
 
-@customElement('orbiter-element')
 export class OrbiterElement extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'start-distributed' }) startDistributed = false;
 

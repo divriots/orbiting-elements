@@ -12,6 +12,9 @@
     "lit": "^2.2.2"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "define": "./dist/define-all.js",
+    "define-orbiting-element": "./dist/define-orbiting.js",
+    "define-orbiter-element": "./dist/define-orbiter.js"
   }
 }

@@ -22,8 +22,22 @@ npm i @divriots/orbiting-elements
 
 ```js
 // CE definition for orbiter-element / orbiting-element
-import '@divriots/orbiting-elements';
+import '@divriots/orbiting-elements/define';
+
+// In case you only want to define the orbiter element or orbiting element separately
+import '@divriots/orbiting-elements/define-orbiter-element';
+import '@divriots/orbiting-elements/define-orbiting-element';
 
 // Using the base classes (e.g. for extension)
 import { OrbiterElement, OrbitingElement } '@divriots/orbiting-elements';
+```
+
+```html
+<orbiter-element>
+  <svg>...</svg>
+  <orbiting-element slot="orbiting"><svg>...</svg></orbiting-element>
+  <orbiting-element slot="orbiting"><svg>...</svg></orbiting-element>
+  <orbiting-element slot="orbiting"><svg>...</svg></orbiting-element>
+  <orbiting-element slot="orbiting"><svg>...</svg></orbiting-element>
+</orbiter-element>
 ```

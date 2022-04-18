@@ -1,12 +1,11 @@
 import {html, css, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {property} from 'lit/decorators.js';
 
 const map = (number: number, inMin: number, inMax: number, outMin: number, outMax: number): number => {
   return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
 
-@customElement('orbiting-element')
-export class OrbitElement extends LitElement {
+export class OrbitingElement extends LitElement {
   @property({ type: Number, reflect: true, attribute: "float-speed" }) public floatDur = 5;
   @property({ type: String, reflect: true, attribute: "float-amount" }) public floatAmount = '20px';
   @property({ type: Number, reflect: true }) public angle;
