@@ -13,3 +13,17 @@
 A Web Component that orbits a certain number of elements around a core element.
 
 Fully flexible to add your own core element or orbiting elements, see demos for advanced use cases.
+
+## Usage
+
+```sh
+npm i @divriots/orbiting-elements
+```
+
+```js
+// CE definition for orbiter-element / orbiting-element
+import '@divriots/orbiting-elements';
+
+// Using the base classes (e.g. for extension)
+import { OrbiterElement, OrbitingElement } '@divriots/orbiting-elements';
+```

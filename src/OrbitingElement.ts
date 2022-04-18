@@ -16,8 +16,6 @@ export class OrbitElement extends LitElement {
 
   public radian: number;
 
-  // TODO: use CSS Custom Props to make all these configurable from outside
-  // width, height, durations, shadows etc.
   static styles = css`
     :host {
       width: 75px;
@@ -60,8 +58,16 @@ export class OrbitElement extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this._setCustomCSSProps();
+    this._randomAppearVisible();
+  }
+
+  _setCustomCSSProps() {
     this.style.setProperty('--float-duration', `${this.floatDur}s`);
     this.style.setProperty('--float-amount', `${this.floatAmount}`);
+  }
+
+  _randomAppearVisible() {
     setTimeout(() => {
       this.classList.add('visible');
     }, Math.random() * 500);
