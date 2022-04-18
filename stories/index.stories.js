@@ -1,5 +1,4 @@
-import "../src/OrbiterElement.ts";
-import "../src/OrbitingElement.ts";
+import "../src/define-all.ts";
 import { main, svg1, svg2, svg3, svg4 } from './icons.js';
 
 export default {

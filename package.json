@@ -8,5 +8,13 @@
   "scripts": {
     "serve": "npx wcd-cli@latest serve K4nq9IUNbvXxLX7C1Z0r --open"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lit": "^2.2.2"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "define": "./dist/define-all.js",
+    "define-orbiting-element": "./dist/define-orbiting.js",
+    "define-orbiter-element": "./dist/define-orbiter.js"
+  }
 }

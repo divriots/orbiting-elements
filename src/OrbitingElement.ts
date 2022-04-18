@@ -1,12 +1,11 @@
 import {html, css, LitElement} from 'lit';
-import {customElement, property} from 'lit/decorators.js';
+import {property} from 'lit/decorators.js';
 
 const map = (number: number, inMin: number, inMax: number, outMin: number, outMax: number): number => {
   return (number - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
 }
 
-@customElement('orbiting-element')
-export class OrbitElement extends LitElement {
+export class OrbitingElement extends LitElement {
   @property({ type: Number, reflect: true, attribute: "float-speed" }) public floatDur = 5;
   @property({ type: String, reflect: true, attribute: "float-amount" }) public floatAmount = '20px';
   @property({ type: Number, reflect: true }) public angle;
@@ -16,8 +15,6 @@ export class OrbitElement extends LitElement {
 
   public radian: number;
 
-  // TODO: use CSS Custom Props to make all these configurable from outside
-  // width, height, durations, shadows etc.
   static styles = css`
     :host {
       width: 75px;
@@ -60,8 +57,16 @@ export class OrbitElement extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this._setCustomCSSProps();
+    this._randomAppearVisible();
+  }
+
+  _setCustomCSSProps() {
     this.style.setProperty('--float-duration', `${this.floatDur}s`);
     this.style.setProperty('--float-amount', `${this.floatAmount}`);
+  }
+
+  _randomAppearVisible() {
     setTimeout(() => {
       this.classList.add('visible');
     }, Math.random() * 500);
