@@ -41,3 +41,19 @@ import { OrbiterElement, OrbitingElement } '@divriots/orbiting-elements';
   <orbiting-element slot="orbiting"><svg>...</svg></orbiting-element>
 </orbiter-element>
 ```
+
+## Features
+
+These features are specific to the orbiter-element or its assigned nodes (orbiting slottables).
+
+- Orbiting elements pause on hover, use `pause-all-on-hover` attribute on the `orbiter-element` to make every orbiting element pause when a single one gets hovered.
+- Use `direction` property (-1 or 1) on the orbiting elements to configure clockwise or counter-clockwise orbit direction.
+- Use `start-distributed` attribute on the `orbiter-element` to make all orbiting elements start off with equal spacing between one another.
+- Use `rotationSpeed` property on the orbiting elements to configure the rotation speed.
+- Use `angle` property on the orbiting elements to configure at which angle they start rotating.
+- Use `radian` property on the orbiting elements to set their current position to a different angle, this property is meant more as a private prop and must be in the range of 0 and 2 PI.
+
+These features are specific to the `orbiting-element` but not coupled to the implementation details of the `orbiter-element`.
+
+- Use `float-speed` attribute on the `orbiting-element` to configure how fast it floats up and down.
+- Use `float-amount` attribute on the `orbiting-element` to configure how much it floats up and down.

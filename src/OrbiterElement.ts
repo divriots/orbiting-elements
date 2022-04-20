@@ -17,6 +17,7 @@ export declare interface CustomOrbitingElement extends HTMLElement {
 
 export class OrbiterElement extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'start-distributed' }) startDistributed = false;
+  @property({ type: Boolean, reflect: true, attribute: 'pause-all-on-hover' }) pauseAllOnHover = false;
 
   static styles = css`
     :host {
@@ -33,40 +34,45 @@ export class OrbiterElement extends LitElement {
     }
   `;
 
+  constructor() {
+    super();
+    this.isHovering = false;
+  }
+
   render() {
     return html`
       <div class="orbiter">
         <slot name="content"></slot>
-        <slot name="orbiting" @slotchange=${this._handleSlotChange}></slot>
+        <slot name="orbiting" @mouseenter=${this.mouseEnter} @mouseleave=${this.mouseLeave} @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
   }
 
-  _handleSlotChange(ev) {
+  protected handleSlotChange(ev) {
     const nodes = ev.target.assignedNodes() as CustomOrbitingElement[];
     nodes.forEach((node, i) => {
-      this._handleNode(node, i, nodes.length);
+      this.handleNode(node, i, nodes.length);
     })
   }
 
-  _handleNode(node, nodeIndex, amountOfNodes) {
+  protected handleNode(node, nodeIndex, amountOfNodes) {
     if (node.orbiting) {
       return; // node already initialized
     }
-
-    this._setDefaultsIfUnset(node);
+    this.setHoverListeners(node);
+    this.setDefaultsIfUnset(node);
     // Start them off as distributed along the circle
     if (this.startDistributed) {
       node.radian = 360 / amountOfNodes * nodeIndex * (Math.PI / 180);
     }
-    this._setPosition(node);
+    this.setPosition(node);
     requestAnimationFrame(() => {
-      this._changePosition(node);
+      this.changePosition(node);
     });
     node.orbiting = true;
   }
 
-  _setDefaultsIfUnset(el) {
+  protected setDefaultsIfUnset(el) {
     el.radius = el.radius ?? Math.min(map(Math.random(), 0, 1, 120, 180), window.innerWidth / 2 - 75); // Clamp by viewport width;
     el.angle = el.angle ?? Math.random() * 360;
     el.rotationSpeed = el.rotationSpeed ?? map(Math.random(), 0, 1, 0.2, 0.3);
@@ -76,20 +82,34 @@ export class OrbiterElement extends LitElement {
     el.style.position = 'absolute';
   }
 
-  _changePosition(el) {
-    if (!el.matches(':hover')) {
+  protected setHoverListeners(node) {
+    node.addEventListener('mouseenter', this.mouseEnter);
+    node.addEventListener('mouseleave', this.mouseLeave);
+  }
+
+  protected changePosition(el) {
+    if (!(this.pauseAllOnHover && this.isHovering) && !el.matches(':hover')) {
       el.radian += el.rotationSpeed * (Math.PI / 180) * el.direction;
-      this._setPosition(el);
+      this.setPosition(el);
     }
+
     requestAnimationFrame(() => {
-      this._changePosition(el);
+      this.changePosition(el);
     });
   }
   
-  _setPosition(el) {
+  protected setPosition(el) {
     const y = el.radius * Math.sin(el.radian);
     const x = el.radius * Math.cos(el.radian);
     el.style.top = `${y}px`;
     el.style.left = `${x}px`;
+  }
+
+  protected mouseEnter(ev) {
+    this.isHovering = true;
+  }
+
+  protected mouseLeave(ev) {
+    this.isHovering = false;
   }
 }
