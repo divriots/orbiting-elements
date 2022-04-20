@@ -14,6 +14,11 @@ A Web Component that orbits a certain number of elements around a core element.
 
 Fully flexible to add your own core element or orbiting elements, see demos for advanced use cases.
 
+[See landing page](https://divriots.github.io/orbiting-elements/)
+
+[See the full demos & code](https://webcomponents.dev/edit/K4nq9IUNbvXxLX7C1Z0r/stories/index.stories.js)
+
+
 ## Usage
 
 ```sh
