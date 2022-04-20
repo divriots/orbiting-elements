@@ -57,16 +57,16 @@ export class OrbitingElement extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this._setCustomCSSProps();
-    this._randomAppearVisible();
+    this.setCustomCSSProps();
+    this.randomAppearVisible();
   }
 
-  _setCustomCSSProps() {
+  protected setCustomCSSProps() {
     this.style.setProperty('--float-duration', `${this.floatDur}s`);
     this.style.setProperty('--float-amount', `${this.floatAmount}`);
   }
 
-  _randomAppearVisible() {
+  protected randomAppearVisible() {
     setTimeout(() => {
       this.classList.add('visible');
     }, Math.random() * 500);

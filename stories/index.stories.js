@@ -35,6 +35,20 @@ export const base = () => `
   </div>
 `;
 
+export const pauseAllOnHover = () => `
+  ${style}
+  <div class="wrap">
+    <h1>We integrate with lots of tools</h1>
+    <orbiter-element pause-all-on-hover>
+      ${main}
+      <orbiting-element slot="orbiting">${svg1}</orbiting-element>
+      <orbiting-element slot="orbiting">${svg2}</orbiting-element>
+      <orbiting-element slot="orbiting">${svg3}</orbiting-element>
+      <orbiting-element slot="orbiting">${svg4}</orbiting-element>
+    </orbiter-element>
+  </div>
+`;
+
 export const sameDirection = () => `
   ${style}
   <div class="wrap">
