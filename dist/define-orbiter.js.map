@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"/source_map/","sources":["src/define-orbiter.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,kBAAkB,CAAC;AAElD,cAAc,CAAC,MAAM,CAAC,iBAAiB,EAAE,cAAc,CAAC,CAAC","sourcesContent":["import { OrbiterElement } from './OrbiterElement';\n\ncustomElements.define('orbiter-element', OrbiterElement);\n"]}

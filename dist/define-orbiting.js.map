@@ -1,0 +1,1 @@
+{"version":3,"sourceRoot":"/source_map/","sources":["src/define-orbiting.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,eAAe,EAAE,MAAM,mBAAmB,CAAC;AAEpD,cAAc,CAAC,MAAM,CAAC,kBAAkB,EAAE,eAAe,CAAC,CAAC","sourcesContent":["import { OrbitingElement } from './OrbitingElement';\n\ncustomElements.define('orbiting-element', OrbitingElement);\n"]}
